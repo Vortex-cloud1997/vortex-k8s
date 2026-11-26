@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vortex-web
+  namespace: vortex
+  labels:
+    app.kubernetes.io/name: vortex-web
+    app.kubernetes.io/part-of: vortex
+spec:
+  ingressClassName: traefik
+  rules:
+    - http:
+        paths:
+          - path: /learnk3s
+            pathType: Prefix
+            backend:
+              service:
+                name: vortex-web
+                port:
+                  name: http
+
