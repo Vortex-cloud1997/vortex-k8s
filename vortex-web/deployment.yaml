@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vortex-web
+  namespace: vortex
+  labels:
+    app.kubernetes.io/name: vortex-web
+    app.kubernetes.io/part-of: vortex
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vortex-web
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vortex-web
+        app.kubernetes.io/part-of: vortex
+    spec:
+      containers:
+        - name: nginx
+          image: ghcr.io/vortex-cloud1997/vortex-web:9864d390e799663b08160d7dbf9548e61a5aae01
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              memory: 64Mi
