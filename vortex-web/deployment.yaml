@@ -29,3 +29,18 @@ spec:
               memory: 16Mi
             limits:
               memory: 64Mi
+
+          readinessProbe:
+            httpGet:
+              path: /learnk3s/
+              port: http
+            periodSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /learnk3s/
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            failureThreshold: 3
+
